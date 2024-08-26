@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -36,12 +37,15 @@ public class CollectionPractice {
         System.out.println( "map2"+ numbers.stream().flatMap(a->Stream.of(a)).distinct().sorted().collect(Collectors.toList()));//flatmap flattens List<List<>> to List<>
 
         //map is transformation operator and reduce is aggregation operation
-        System.out.println( "sum="+ numbers.stream().reduce((a,b)->a+b));//reduce reduces to a single value, transform will transforms each value.
+        System.out.println( "sum="+ numbers.stream().reduce((a,b)->a+b).get());//reduce reduces to a single value, transform will transforms each value.
 
+        System.out.println( "sum="+numbersList.stream().flatMap(Collection::stream).reduce((c,d)->c+d).get());
         Person alex = new Person("Alex", 23);
         Person john = new Person("John", 40);
         Person peter = new Person("Peter", 32);
         List<Person> people = Arrays.asList(alex, john, peter);
+        people.stream().map(a->a.getAge()).reduce((a,b)->a+b).get();
+        people.stream().map(a->a.getAge()).mapToInt(a->a.intValue()).average();
         System.out.println( "age="+people.stream().map((a)->a.getAge()).reduce((x,y)->x+y));//sum of all age
         people.stream().map(a->a.getAge()).mapToInt(a->a.intValue()).average();
         System.out.println( "Maxx age="+people.stream().map((a)->a.getAge()).max(Comparator.naturalOrder()));
@@ -58,8 +62,18 @@ public class CollectionPractice {
         System.out.println(  sum.apply(4));
         System.out.println(  biSum.apply(4, 5));
         System.out.println(biSumMethod(sum).apply(2,3));
+        BiFunction<Integer, Integer, String> func  =(a,b)->String.valueOf(a+b);
+        System.out.println("sumBi= "+sum(func, 2,3));
+        Supplier<Double> squareThiSnum = ()-> 4d;
+        System.out.println("squareThiSnum= "+squareLazy(squareThiSnum));
 
+    }
+    public static double squareLazy(Supplier<Double> lazyValue) {
+        return Math.pow(lazyValue.get(), 2);
+    }
 
+    static String sum(BiFunction<Integer, Integer,String> function, int a, int b){
+        return function.apply(a,b);
     }
 
     static BiFunction<Integer, Integer, Integer> biSumMethod(Function<Integer, Integer> sum){

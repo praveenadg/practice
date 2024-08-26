@@ -45,13 +45,13 @@ public class ThrottleGateway {
     private static int throttleGateway(int[] requestTime){
         int count=0;
         for(int i=0; i<requestTime.length; i++){
-            if(i>2 && requestTime[i]==requestTime[i-3]){
+            if(i>=3 && requestTime[i]==requestTime[i-3]){
                 count++;
                 System.out.println("index="+i);
-            } else if(i>19 && requestTime[i]-requestTime[i-20] <10){
+            } else if(i>=20 && requestTime[i]-requestTime[i-20] <10){
                 count++;
                 System.out.println("index="+i);
-            }else if(i>60 && requestTime[i]-requestTime[i-60] <60){
+            }else if(i>=60 && requestTime[i]-requestTime[i-60] <60){
                 count++;
                 System.out.println("index="+i);
             }

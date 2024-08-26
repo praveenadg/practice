@@ -1,7 +1,12 @@
 package test;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class LargestRectangleInHistogram {
     public static void main(String args[]){
+        Queue<Integer> q= new LinkedList<>();
         System.out.println(holdsMaxWater(new int[]{2,1,5,6,2,3}));
         System.out.println(largestRectangleInHistogram(new int[]{2,1,5,6,2,3}));
     }

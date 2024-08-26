@@ -10,19 +10,22 @@ public class ParallelSum {
         ExecutorService executor = Executors.newFixedThreadPool(numThreads); // Create a thread pool
 
         int chunkSize = array.length / numThreads; // Calculate chunk size for each thread
-
+        //int chunkSize=1;
+        long start=System.currentTimeMillis();
         // Submit tasks to the thread pool
         for (int i = 0; i < numThreads; i++) {
             int startIndex = i * chunkSize;
             int endIndex = (i == numThreads - 1) ? array.length : (i + 1) * chunkSize;
             Runnable task = new SumTask(array, startIndex, endIndex);
+           // Runnable task = new SumTask(array, 0, array.length);
             executor.submit(task);
         }
 
         executor.shutdown(); // Shut down the thread pool
 
         try {
-            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS); // Wait for all tasks to complete
+            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+            System.out.println("timetaken="+(System.currentTimeMillis()-start));// Wait for all tasks to complete
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

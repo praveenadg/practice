@@ -13,6 +13,7 @@ import java.util.List;
 public class Anagram {
     public static void main(String[] args) {
         System.out.println("Hello world!");
+        Math.random();
         System.out.println(anagram(new String[]{"eat","tea","tan","ate","nat","bat"}));//[[eat, tea, ate], [bat], [tan, nat]]
     }
     public static List<List<String>> anagram(String [] arr){
@@ -27,6 +28,5 @@ public class Anagram {
             anagramMap.get(key).add(text);
         }
         return new ArrayList(anagramMap.values());
-
     }
 }
