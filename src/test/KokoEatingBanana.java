@@ -62,7 +62,7 @@ public class KokoEatingBanana {
        // List<Integer> stack = new ArrayList<>();
         //stack.set()
         for(int banana : piles){
-            hours +=  Math.ceil((double) banana / rate)+1;
+            hours +=  Math.ceil((double) banana / rate);
         }
         return hours;
     }

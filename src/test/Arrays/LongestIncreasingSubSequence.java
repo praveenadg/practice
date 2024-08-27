@@ -24,7 +24,7 @@ public class LongestIncreasingSubSequence {
                        // j++;
                         j=binarySearch(sub, nums[i]);
                     }
-                    sub.set(j, nums[i]);
+                    sub.set(j, nums[i]);//find the index where this value can be inserted and replace the element
                 }
             }
             return sub.size();
@@ -33,7 +33,6 @@ public class LongestIncreasingSubSequence {
         private static int binarySearch(List<Integer> sub, int num) {
             int left = 0;
             int right = sub.size() - 1;
-           // int mid = left + (right - left) / 2;
             while(left<right) {
                int mid = left + (right - left) / 2;
                 if (sub.get(mid) == num) {
