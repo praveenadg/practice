@@ -7,9 +7,9 @@ import java.util.*;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.JUnitCore;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+//import org.junit.runner.JUnitCore;
 
 /*
  * To execute Java, please define "static void main" on a class
@@ -20,7 +20,7 @@ import org.junit.runner.JUnitCore;
 
 public class Hims {
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-        JUnitCore.main("Hims");
+        //JUnitCore.main("Hims");
         Hims hims = (Hims) Class.forName("Hims").newInstance();
         hims.recommendedProducts();
     }
@@ -84,7 +84,7 @@ public class Hims {
 
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void recommendedProducts() {
         final List<String> expected = new ArrayList<>();
         expected.add("789");
@@ -96,7 +96,7 @@ public class Hims {
                 .map(Product::getId)
                 .collect(Collectors.toList());
 
-        Assert.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 }
 

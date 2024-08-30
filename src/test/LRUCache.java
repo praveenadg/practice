@@ -20,7 +20,7 @@ class LRUCache {
     public LRUCache(int capacity) {
         list= new LinkedList<>();
         // map = new HashMap(capacity);
-        hashMap = new HashMap(capacity);
+        hashMap = new HashMap<>(capacity);
         cap=capacity;
     }
 

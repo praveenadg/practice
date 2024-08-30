@@ -44,7 +44,7 @@ public class CollectionPractice {
         Person john = new Person("John", 40);
         Person peter = new Person("Peter", 32);
         List<Person> people = Arrays.asList(alex, john, peter);
-        people.stream().map(a->a.getAge()).reduce((a,b)->a+b).get();
+        people.stream().map(a->a.getAge()).reduce(Integer::sum).get();
         people.stream().map(a->a.getAge()).mapToInt(a->a.intValue()).average();
         System.out.println( "age="+people.stream().map((a)->a.getAge()).reduce((x,y)->x+y));//sum of all age
         people.stream().map(a->a.getAge()).mapToInt(a->a.intValue()).average();

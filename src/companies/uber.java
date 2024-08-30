@@ -23,17 +23,17 @@ import java.util.*;
         public static void main(String[] args) {
             System.out.println("Hello, World");
             char[][] grid = new char[][]{{'C','A','T'},{'O','S','K'},{'P','Y','U'}};
-            List<String> result = wordSearch(grid, Arrays.asList( "CAT", "COPY", "ASK", "SOS"));
+                Set<String> result = wordSearch(grid, Arrays.asList( "CAT", "COPY", "ASK", "SOS"));
             result.forEach(a->System.out.println(a));
             System.out.println("test");
 
         }
 
-        public static List<String> wordSearch(char [][] grid, List<String> words){
+        public static Set<String> wordSearch(char [][] grid, List<String> words){
             if(grid == null)
                 return null;
 
-            List<String> result = new ArrayList();
+            Set<String> result = new HashSet<>();
 
             boolean [][] visited = new boolean[grid.length][grid[0].length];
             for(String word : words){
@@ -53,11 +53,33 @@ import java.util.*;
             return result;
         }
 
+//interview
+//        private static void dfs(char [][] grid, int i, int j, String word, int charIndex,  boolean [][] visited,  List<String> result){
+//            if(i>=grid.length || j >= grid.length || i<0 || j<0 || visited[i][j] || charIndex>=word.length())
+//                return;
+//
+//            if(word.charAt(charIndex) == grid[i][j]){
+//                visited[i][j]=true;
+//                dfs(grid, i+1, j, word, charIndex+1,visited, result);
+//                dfs(grid, i-1, j, word, charIndex+1,visited,result);
+//                dfs(grid, i, j+1, word, charIndex+1,visited,result);
+//                dfs(grid, i, j-1, word, charIndex+1,visited,result);
+//
+//            }
+//            visited[i][j]=false;
+//            if(charIndex==word.length()){
+//                result.add(word);
+//            }
+//
+//        }
 
-        private static void dfs(char [][] grid, int i, int j, String word, int charIndex,  boolean [][] visited,  List<String> result){
-            if(i>=grid.length || j >= grid.length || i<0 || j<0 || visited[i][j] || charIndex>=word.length())
+        private static void dfs(char [][] grid, int i, int j, String word, int charIndex,  boolean [][] visited,  Set<String> result){
+            if(i>=grid.length || j >= grid.length || i<0 || j<0 || visited[i][j] || charIndex>word.length())
                 return;
-
+            if(charIndex==word.length()){
+                result.add(word);
+                return;
+            }
             if(word.charAt(charIndex) == grid[i][j]){
                 visited[i][j]=true;
                 dfs(grid, i+1, j, word, charIndex+1,visited, result);
@@ -67,9 +89,7 @@ import java.util.*;
 
             }
             visited[i][j]=false;
-            if(charIndex==word.length()){
-                result.add(word);
-            }
+
 
         }
     }

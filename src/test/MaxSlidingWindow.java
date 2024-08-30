@@ -2,7 +2,10 @@ package test;
 
 public class MaxSlidingWindow {
     public static void main(String[] args) {
-        maxSlidingWindow(new int[]{1,3,-1,-3,5,3,6,7}, 3);
+       int[] result =maxSlidingWindow(new int[]{1,3,-1,-3,5,3,6,7}, 3);
+       for(int i : result){
+           System.out.println(i);
+       }
     }
 
     public static int[] maxSlidingWindow(int[] nums, int k) {
