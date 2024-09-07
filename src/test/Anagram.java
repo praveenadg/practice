@@ -25,6 +25,6 @@ public class Anagram {
             }
             anagramMap.get(key).add(text);
         }
-        return new ArrayList(anagramMap.values());
+        return new ArrayList<>(anagramMap.values());
     }
 }

@@ -25,6 +25,7 @@ import java.util.*;
             vowels.add('i');
             vowels.add('o');
             vowels.add('u');
+            //Character.isAlphabetic(str.charAt(0));
             char [] array =str.toLowerCase().replaceAll("[^a-zA-Z]","").toCharArray();
             for(char c: array){
                 if(vowels.contains(c)){

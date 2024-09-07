@@ -14,7 +14,7 @@ public class ContiguousArrayOfOnesAndZeros {
 
 
     }
-
+//use map to count the ones and zeros at each index, whenever count matches we have found equal number of 1s 0s now find max length
     public static int findMaxLength(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();
         map.put(0, -1);

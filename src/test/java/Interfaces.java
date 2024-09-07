@@ -17,12 +17,17 @@ public class Interfaces {
         void hello();
     }
 
-    interface B extends A {
+    interface B  extends A {
         default void hi() { System.out.println("B"); }
         void hello();
     }
 
     class AB implements A,B {
+//        @Override
+//        public void hi() {
+//            A.super.hi();
+//        }
+
         @Override
         public void hello() {
             System.out.println("hello");

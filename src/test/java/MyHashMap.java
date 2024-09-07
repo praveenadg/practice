@@ -6,7 +6,7 @@ import java.util.List;
 
 class MyHashMap {
 
-    class Pair<U,V>{
+    static class Pair<U,V>{
         public U first;
         public V second;
         public Pair(U first, V second){
@@ -14,14 +14,14 @@ class MyHashMap {
             this.second=second;
         }
     }
-    class Bucket{
-        private List<Pair<Integer, Integer>> bucket;
+    static class Bucket{
+        private List<Pair<Integer, Integer>> pairList;
         public Bucket(){
-            this.bucket = new LinkedList<>();
+            this.pairList = new LinkedList<>();
         }
 
         public Integer get(Integer key) {
-            for (Pair<Integer, Integer> pair : this.bucket) {
+            for (Pair<Integer, Integer> pair : this.pairList) {
                 if (pair.first.equals(key))
                     return pair.second;
             }
@@ -30,20 +30,20 @@ class MyHashMap {
 
         public void update(Integer key, Integer value) {
             boolean found = false;
-            for (Pair<Integer, Integer> pair : this.bucket) {
+            for (Pair<Integer, Integer> pair : this.pairList) {
                 if (pair.first.equals(key)) {
                     pair.second = value;
                     found = true;
                 }
             }
             if (!found)
-                this.bucket.add(new Pair<Integer, Integer>(key, value));
+                this.pairList.add(new Pair<Integer, Integer>(key, value));
         }
 
         public void remove(Integer key) {
-            for (Pair<Integer, Integer> pair : this.bucket) {
+            for (Pair<Integer, Integer> pair : this.pairList) {
                 if (pair.first.equals(key)) {
-                    this.bucket.remove(pair);
+                    this.pairList.remove(pair);
                     break;
                 }
             }
@@ -51,30 +51,36 @@ class MyHashMap {
     }
 
     List<Bucket> buckets;
+    int capacity;
 
-    private int key_space;
+    private final int key_space;
     public MyHashMap() {
         this.key_space=2069;
-        List<Bucket> buckets = new ArrayList<>();
+        capacity=16;
+        buckets = new ArrayList<>();
         for (int i = 0; i < this.key_space; ++i) {
             this.buckets.add(new Bucket());
         }
     }
 
     public void put(int key, int value) {
-        int hash_key = key % this.key_space;
+        int hash_key = key % key_space;
         this.buckets.get(hash_key).update(key, value);
     }
 
+    private int hash(Integer key) {
+        return key.hashCode() % capacity;
+    }
+
     public int get(int key) {
-        int hashkey=key%key_space;
-        return this.buckets.get(hashkey).get(key);
+        int hash_key=key%key_space;
+        return this.buckets.get(hash_key).get(key);
 
     }
 
     public void remove(int key) {
-        int hashkey=key%key_space;
-        this.buckets.get(hashkey).remove(key);
+        int hash_key=key%key_space;
+        this.buckets.get(hash_key).remove(key);
     }
 }
 

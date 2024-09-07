@@ -19,12 +19,12 @@ public class LongestIncreasingSubSequence {
                 if(nums[i]>sub.get(sub.size()-1)){
                     sub.add(nums[i]);
                 } else {
-                    int j=0;
-                    while(nums[i]>sub.get(j)){
-                       // j++;
-                        j=binarySearch(sub, nums[i]);
-                    }
-                    sub.set(j, nums[i]);//find the index where this value can be inserted and replace the element
+                    // int j=0;
+                    // while(nums[i]>result.get(j)){
+                    //     j++;
+                    // }
+                        int j=binarySearch(sub, nums[i]);
+                        sub.set(j, nums[i]);//find the index where this value can be inserted and replace the element
                 }
             }
             return sub.size();
