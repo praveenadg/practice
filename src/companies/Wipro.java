@@ -52,7 +52,7 @@ import java.util.stream.Collectors;
             int a=0, b=0;
             for(int i=0; i<mergedArrayLength; i++){
                 if(a<nums1.length && b<nums2.length){
-                    if(nums1[a]<nums2[b]){
+                    if(nums1[a]!=0 && nums1[a]<=nums2[b]){
                         result[i]=nums1[a++];
                     } else{
                         result[i]=nums2[b++];

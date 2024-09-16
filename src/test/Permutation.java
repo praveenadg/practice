@@ -22,7 +22,7 @@ public class Permutation {
     private static void backtrack(List<Integer> current, List<List<Integer>> result, int[] nums)
     {
         if(current.size()==nums.length){
-            result.add((current));
+            result.add(new ArrayList<>(current));
             return;
         }
 

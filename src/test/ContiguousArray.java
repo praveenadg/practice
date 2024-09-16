@@ -34,19 +34,22 @@ import java.util.Map;
  * Now, the count values can range between -n to +n, with the extreme points corresponding to the complete array being filled with all 0's and all 1's respectively. Thus, we make use of an array arr(of size 2n+1to keep track of the various count's encountered so far. We make an entry containing the current element's index (i) in the arr for a new count encountered everytime. Whenever we come across the same count value later while traversing the array, we determine the length of the subarray lying between the indices corresponding to the same count values.
  */
 
-public class ContigousArray {
+public class ContiguousArray {
     public static void main(String[] args) {
         System.out.println("Hello world!");
-        findMaxLength(new int[]{0, 1, 0});
+        System.out.println( findMaxLength(new int[]{0, 1, 0}));
     }
 
         public static int findMaxLength(int[] nums) {
             Map<Integer, Integer> map = new HashMap<>();
-            map.put(0, -1);
+           // map.put(0, -1);
             int maxlen = 0, count = 0;
-            for (int i = 0; i < nums.length; i++) {// [0, 1, 0] -> {(-1,0),(0, 1--1(2)), (-1,2)}}
+            for (int i = 0; i < nums.length; i++) {// [0, 1, 0] -> {(-1,0),(1--1(2), 1), (1,2)}}
                 count = count + (nums[i] == 1 ? 1 : -1);
-                if (map.containsKey(count)) {
+                if(count==0){
+                    maxlen=i+1;
+                }
+                else if (map.containsKey(count)) {
                     maxlen = Math.max(maxlen, i - map.get(count));
                 } else {
                     map.put(count, i);

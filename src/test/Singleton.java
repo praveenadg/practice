@@ -55,4 +55,17 @@ public class Singleton {
         }
         return instance;
     }
+
+
+    //singleton using inner class
+
+    private static class SingletonHelper {
+
+        private static final Singleton INSTANCE = new Singleton();
+    }
+
+        public static Singleton getInstanceStatic(){
+            return SingletonHelper.INSTANCE;
+        }
+
 }

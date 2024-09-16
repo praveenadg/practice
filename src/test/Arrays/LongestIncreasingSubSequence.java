@@ -20,10 +20,10 @@ public class LongestIncreasingSubSequence {
                     sub.add(nums[i]);
                 } else {
                     // int j=0;
-                    // while(nums[i]>result.get(j)){
+                    // while(nums[i]>sub.get(j)){
                     //     j++;
                     // }
-                        int j=binarySearch(sub, nums[i]);
+                        int j=binarySearch(sub, nums[i]);//since the sub list is sorted we can do binary search
                         sub.set(j, nums[i]);//find the index where this value can be inserted and replace the element
                 }
             }

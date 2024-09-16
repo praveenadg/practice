@@ -22,6 +22,10 @@ public class Interfaces {
         void hello();
     }
 
+    interface C extends A,B{
+
+    }
+
     class AB implements A,B {
 //        @Override
 //        public void hi() {
