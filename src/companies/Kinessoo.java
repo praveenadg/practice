@@ -20,17 +20,19 @@ public class Kinessoo {
             Node n2 = new Node(20);
             Node n3 = new Node(15);
             Node n4 = new Node(7);
-            Node n5 = new Node(7);
+          //  Node n5 = new Node(7);
 
             root.left=n1;
             root.right=n2;
             n2.left=n3;
             n2.right=n4;
-            n4.right=n5;
+           // n4.right=n5;
 
 
-            System.out.println(minDepth(root));
-            System.out.println(maxDepth(root));
+            System.out.println("minDepth= "+minDepth(root));
+            System.out.println("maxDepth= "+maxDepth(root));
+            diameter(root);
+            System.out.println("diameter= "+diameter);
         }
 
         static class Node {
@@ -56,12 +58,19 @@ public class Kinessoo {
     private static int maxDepth(Node root){
         if(root==null)
             return 0;
-        if(root.left==null){
-            return 1+maxDepth(root.right);
-        } else if(root.right==null){
-            return 1+maxDepth(root.left);
-        } else {
-            return Math.max(maxDepth(root.left), maxDepth(root.right))+1;
-        }
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
+        return Math.max(left, right) +1;
+    }
+
+
+    static int diameter=0;
+    private static int diameter(Node root){
+            if(root==null)
+                return 0;
+            int left=diameter(root.left);
+            int right=diameter(root.right);
+            diameter= Math.max(diameter, left+right+1);
+            return Math.max(left, right)+1;
     }
 }

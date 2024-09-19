@@ -5,12 +5,12 @@ import java.util.Map;
 
 public class TransactionKeyValueStore {
 
-    class Transaction {
+    static class Transaction {
         Map<String, String> store = new HashMap<String, String>();
         Transaction next;
     }
 
-    class TransactionStack {
+    static class TransactionStack {
         Transaction top;
         int size;
 

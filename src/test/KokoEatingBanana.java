@@ -32,37 +32,29 @@ public class KokoEatingBanana {
         System.out.println(bitSet1);
 
 
-        minEatingSpeed(new int[]{30,11,23,4,20},6);
+       System.out.println(minEatingSpeed(new int[]{30,11,23,4,20},6));
     }
     public static int minEatingSpeed(int[] piles, int h) {
         Arrays.sort(piles);
+        int left=1; int right=piles[piles.length-1];
 
-        int left=piles[0], right=piles[piles.length-1];
         while(left<right){
-            int mid=left+(right-left)/2;
-            int rate=hoursTofinishAtThisRate(piles,mid);
-            if(rate>h){
+            int mid = left+(right-left)/2;
+            int rate = hoursToFinishAtRate(mid, piles);
+            if(rate<=h){
+                right=mid;
+            } else {
                 left=mid+1;
-            } else if(rate<h){
-                right=mid-1;
-            } else{
-                return mid;
             }
         }
-        return left;
+        return right;
 
     }
 
-    public static int hoursTofinishAtThisRate(int[] piles, int rate){
+    static int  hoursToFinishAtRate(int rate, int[] piles){
         int hours=0;
-        //Map<Integer, Integer> linkedHashMap= new LinkedHashMap<>();
-      //  List<String> list = new ArrayList();
-
-       // linkedHashMap.keySet().iterator().remove();
-       // List<Integer> stack = new ArrayList<>();
-        //stack.set()
-        for(int banana : piles){
-            hours +=  Math.ceil((double) banana / rate);
+        for( int num : piles){
+            hours= hours+ (int)Math.ceil((double) num / rate);//convert num to double to get ceiling number
         }
         return hours;
     }

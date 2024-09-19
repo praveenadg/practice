@@ -1,12 +1,7 @@
 package companies;
 
 
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-    public class Wipro {
+public class Wiproo {
 
         public static void main(String[] args) {
 
