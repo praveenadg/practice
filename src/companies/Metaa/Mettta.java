@@ -1,9 +1,9 @@
-package companies;
+package companies.Metaa;
 
 import java.util.List;
 
 public class Mettta {
-    //Diameter of binary tree
+    //Diameter of binary tree // nested-list-weight-sum
     // https://leetcode.com/problems/nested-list-weight-sum/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days
 
    class NestedInteger{

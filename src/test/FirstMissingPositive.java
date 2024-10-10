@@ -9,6 +9,7 @@ public class FirstMissingPositive {
     public static void main(String[] args) {
         System.out.println("Hello world!");
         System.out.println( firstMissingPositiveUsingSet(new int []{-1,-2,-60,40,43}));
+       // System.out.println( firstMissingPositive1(new int []{-1,-2,-60,40,43}));
     }
     public static int firstMissingPositive(int[] nums) {
         //sort and find the smallest positive int
@@ -41,6 +42,7 @@ public class FirstMissingPositive {
         }
         return -1;
     }
+
     // int left=0; right=nums.length;
     // for(int i=left; i<right; i++){
     //     int mid = left+(right-left)/2;

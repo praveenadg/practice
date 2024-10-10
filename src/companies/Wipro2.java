@@ -11,7 +11,7 @@ import java.util.*;
         public static void main(String[] args) {
 
             String str = "This is a really simple sentence A1 B2";
-
+            String modified="A man, a plan, a canal: Panama".replaceAll("[^a-zA-Z]", "");
             List<Integer> countList = getVowelsAndConsonantsForUpperAndLowerCases(str);
             countList.forEach(a->System.out.println(a));
         }

@@ -1,5 +1,6 @@
 package test;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Stack;
@@ -13,6 +14,7 @@ public class MockInterview {
         //String=(((5+2)*(3-1))/7) //what are the supported operators?
         System.out.println(stringArithmeticEvaluator("(((5+2)*(3-1))/7)"));
         PriorityQueue<Integer> heap = new PriorityQueue<>();
+        //Arrays.binarySearch(arr, key);
 
 
         //
@@ -27,7 +29,7 @@ public class MockInterview {
             }
 
             if(Character.isDigit(c)){
-                intStack.push(Integer.parseInt(String.valueOf(c)));
+                intStack.push(c-'0');
             } else if(c ==')'){
                 int rightVal = intStack.pop();
                 char operator=operatorsStack.pop();
