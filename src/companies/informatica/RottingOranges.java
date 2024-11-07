@@ -1,12 +1,10 @@
 package companies.informatica;
 
-import java.util.Arrays;
-
 public class RottingOranges {
 
     public static void main(String[] args) {
-        String s ="test";
-        s.indexOf("test");
+        String s = "problems";
+        s.indexOf("problems");
         // Arrays.binarySearch();
         System.out.println("Rotting Oranges= "+ timeTakenToRot(new int[][]{{2,1,1},{1,1,0},{0,1,1}}));
     }

@@ -1,7 +1,6 @@
 package companies;
 
-    import java.io.*;
-//import com.fasterxml.jackson.databind.ObjectMapper;
+    //import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.*;
 
@@ -25,7 +24,7 @@ import java.util.*;
             char[][] grid = new char[][]{{'C','A','T'},{'O','S','K'},{'P','Y','U'}};
                 Set<String> result = wordSearch(grid, Arrays.asList( "CAT", "COPY", "ASK", "SOS"));
             result.forEach(a->System.out.println(a));
-            System.out.println("test");
+            System.out.println("problems");
 
         }
 
