@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
+//323. Number of Connected Components in an Undirected Graph
+// https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/description/
 public class BuildGraphAndFincConnectedComponentsInEdgesArray {
 
    static ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap();

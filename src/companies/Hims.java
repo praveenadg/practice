@@ -50,15 +50,32 @@ public class Hims {
         return products;
     }
 
+    static class MyCustomComparator implements Comparator<Product>{
+        @Override
+        public int compare(Product p1, Product p2){
+            List<String> recommendation = getRecommendations();
+            Map<String, Integer> map = new HashMap<>();
+            for(int i=0; i<recommendation.size(); i++){
+                map.put(recommendation.get(i),i);
+            }
+            if(map.get(p1.getId())==null){
+                return 1;
+            }   if(map.get(p2.getId())==null){
+                return -1;
+            }
+            return map.get(p1.getId()).compareTo(map.get(p2.getId()));
+        }
+    }
+
     /**
      * Returns a list of sellable products in the recommended order.
      */
     public static List<Product> getRecommendedProducts() {
         List<Product> products = getProducts();
-        String title = products.stream().map(Product::getTitle).collect(Collectors.joining(","));
-        System.out.println(title);
-        products.stream().reduce((product, product2) -> new Product(product.getId(), product2.getTitle(),"desc"));
-        Collections.sort(products, new CustomComparator());
+        //String title = products.stream().map(Product::getTitle).collect(Collectors.joining(","));
+       // System.out.println(title);
+       // products.stream().reduce((product, product2) -> new Product(product.getId(), product2.getTitle(),"desc"));
+        products.sort(new MyCustomComparator());
         return products;
     }
 

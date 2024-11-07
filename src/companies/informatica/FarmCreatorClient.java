@@ -116,10 +116,10 @@ public class FarmCreatorClient {
             System.out.println("Creating number of lands: " + numLand + " num plants: " + numPlants);//for consistency if it is really needed then add for form2 or remove from both the places
             FarmCreator farm3 = new FarmCreator();
             for (int i = 0; i < numLand; i++) {
-                farm3.createLand(secondFarmName, "Crops");
+                farm3.createLand(secondFarmName, "Crops");//should be thirdFarmName
             }
             for (int i = 0; i < numPlants; i++) {
-                farm3.addPlants(secondFarmName, "Crops");
+                farm3.addPlants(secondFarmName, "Crops"); //should be thirdFarmName
             }
             FarmCreatorClient.payTaxes(farm3);
             System.out.println("Created farm: " + farm3.farm);

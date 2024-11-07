@@ -117,12 +117,12 @@ S = number of synonym pairs
 
             */
 
-            System.out.println(isSysonym(line1_1, line1_2, synonyms1_1));
-            System.out.println(isSysonym(line2_1, line2_2, synonyms2_1));
-            System.out.println(isSysonym(line2_2,line2_1, synonyms2_1));
-            System.out.println(isSysonym(line2_1, line2_2, synonyms2_2));
-            System.out.println(isSysonym(line3_1, line3_2, synonyms3_1));
-            System.out.println(isSysonym(line4_1, line4_2, synonyms4_1));
+            System.out.println(isSynonym(line1_1, line1_2, synonyms1_1));
+            System.out.println(isSynonym(line2_1, line2_2, synonyms2_1));
+            System.out.println(isSynonym(line2_2,line2_1, synonyms2_1));
+            System.out.println(isSynonym(line2_1, line2_2, synonyms2_2));
+            System.out.println(isSynonym(line3_1, line3_2, synonyms3_1));
+            System.out.println(isSynonym(line4_1, line4_2, synonyms4_1));
 
 
         }
@@ -134,7 +134,7 @@ S = number of synonym pairs
      * @param synonyms
      * @return
      */
-        private static boolean isSysonym( String line1, String line2, String[][] synonyms){
+        private static boolean isSynonym(String line1, String line2, String[][] synonyms){
             Map<String, List<String>> map = new HashMap<>();
             for(String[] array : synonyms){
                 String first = array[0];
