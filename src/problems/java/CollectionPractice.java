@@ -1,13 +1,6 @@
 package problems.java;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -15,8 +8,44 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CollectionPractice {
+    static class Weather {
+        String city;
+
+        public String getCity() {
+            return city;
+        }
+
+        public void setCity(String city) {
+            this.city = city;
+        }
+
+        public Double getTemperature() {
+            return temperature;
+        }
+
+        public void setTemperature(Double temperature) {
+            this.temperature = temperature;
+        }
+
+        Double temperature;
+
+        public Weather(String city, double temperature) {
+            this.city = city;
+            this.temperature = temperature;
+        }
+
+    }
     public static void main(String [] args) {
 
+        List<Weather> weatherList = new ArrayList<>();
+        weatherList.add(new Weather("LA", 33.0));
+        weatherList.add(new Weather("Seattle", 13.2));
+        weatherList.add(new Weather("AB", -33.0));
+        weatherList.add(new Weather("CH", 0.0));
+
+        weatherList.stream().sorted((s1, s2) -> s2.getTemperature().compareTo(s1.getTemperature())).collect(Collectors.toList()).forEach(a -> System.out.println(a.city));
+
+        PriorityQueue<Integer> pq = new PriorityQueue();
         List<Integer> numbers = Arrays.asList(42, 4, 2, 24, 2, 3);
         List<List<Integer>> numbersList = new ArrayList<>();
         numbersList.add(numbers);
@@ -29,6 +58,7 @@ public class CollectionPractice {
 
         System.out.println("min="+min);
         System.out.println("max="+max);
+        System.out.println("sorted=" + numbers.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
 
         System.out.println( numbers.indexOf( Collections.min(numbers)));
         Function<Integer, Integer> sum= a-> a+2;
@@ -46,7 +76,7 @@ public class CollectionPractice {
         List<Person> people = Arrays.asList(alex, john, peter);
         people.stream().map(a->a.getAge()).reduce(Integer::sum).get();
         people.stream().map(a->a.getAge()).mapToInt(a->a.intValue()).average();
-        System.out.println( "age="+people.stream().map((a)->a.getAge()).reduce((x,y)->x+y));//sum of all age
+        System.out.println("age=" + people.stream().map((a) -> a.getAge()).reduce((x, y) -> x + y));//sum of all age - reduce to a single value
         people.stream().map(a->a.getAge()).mapToInt(a->a.intValue()).average();
         System.out.println( "Maxx age="+people.stream().map((a)->a.getAge()).max(Comparator.naturalOrder()));
         System.out.println( "Maxx age="+people.stream().map((a)->a.getAge()).mapToInt(a->a.intValue()).max());

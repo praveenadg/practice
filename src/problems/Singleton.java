@@ -1,5 +1,6 @@
 package problems;
 
+//3 types using double checked locking, using lazy loading inner class, using enum
 public class Singleton {
 
     /**
@@ -59,6 +60,13 @@ public class Singleton {
 
     //singleton using inner class
 
+    /**
+     * Lazy initialization: The singleton instance is created only when it's first accessed, not when the class is loaded.
+     * Thread-safe:
+     * The class loading mechanism in Java guarantees that the initialization of the SingletonHolder class is thread-safe.
+     * susceptible to a particular ability of Reflection in Java
+     */
+
     private static class SingletonHelper {
 
         private static final Singleton INSTANCE = new Singleton();
@@ -68,4 +76,25 @@ public class Singleton {
             return SingletonHelper.INSTANCE;
         }
 
+    //singleton using Enum.
+
+    /**
+     * Thread-safe: The JVM guarantees that an enum value is instantiated only once, even in a multithreaded environment.
+     * Serialization: Enums handle serialization automatically, preventing multiple instances from being created during deserialization.
+     * Reflection-proof: Reflection cannot be used to create another instance of the singleton.
+     * Simple and concise: The code is straightforward and easy to understand.
+     */
+    public enum SingletonEnum {
+        INSTANCE;
+
+        // Any methods or fields you need for the singleton
+        public void doSomething() {
+            System.out.println("Doing something in the singleton");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        SingletonEnum.INSTANCE.doSomething();
+    }
 }
