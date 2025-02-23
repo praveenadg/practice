@@ -63,7 +63,7 @@ public class Singleton {
     /**
      * Lazy initialization: The singleton instance is created only when it's first accessed, not when the class is loaded.
      * Thread-safe:
-     * The class loading mechanism in Java guarantees that the initialization of the SingletonHolder class is thread-safe.
+     * The class loading mechanism in Java guarantees sequential that the initialization of the SingletonHolder class is thread-safe.
      * susceptible to a particular ability of Reflection in Java
      */
 
@@ -83,6 +83,7 @@ public class Singleton {
      * Serialization: Enums handle serialization automatically, preventing multiple instances from being created during deserialization.
      * Reflection-proof: Reflection cannot be used to create another instance of the singleton.
      * Simple and concise: The code is straightforward and easy to understand.
+     * Enum have an explicit private constructor
      */
     public enum SingletonEnum {
         INSTANCE;

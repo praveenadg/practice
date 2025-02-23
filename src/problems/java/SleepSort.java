@@ -7,7 +7,7 @@ import java.util.concurrent.CompletableFuture;
 public class SleepSort {
     List<Integer> list = new ArrayList<>();
 
-    void sleepSort(int i) {
+    void sort(int i) {
         try {
             Thread.sleep(i);
         } catch (InterruptedException e) {
@@ -30,7 +30,7 @@ public class SleepSort {
 
         List<CompletableFuture<Void>> futureList1 = new ArrayList<>();
         for (int i : arr) {
-            futureList1.add(CompletableFuture.runAsync(() -> sleepSort.sleepSort(i)));
+            futureList1.add(CompletableFuture.runAsync(() -> sleepSort.sort(i)));
         }
         futureList1.forEach(CompletableFuture::join);
         System.out.println(sleepSort.list);

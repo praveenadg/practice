@@ -1,5 +1,7 @@
 package companies.walmart;
 
+import java.util.ArrayList;
+
 /***
  *
  * A = {1,3,4,6,8,11,19,20}
@@ -11,8 +13,18 @@ package companies.walmart;
  */
 public class WalmartCoding {
 
-
+    record Employee(String name, int id) {
+    }
     public static void main(String args[]){
+        System.out.println(null == "text");
+        int x = 0;
+        callMethod(x);
+        System.out.println(x);
+
+        Employee e = new Employee("test", 1);
+        callMethod(e);
+        System.out.println(e);
+        var list = new ArrayList<>();
         System.out.println(isArrayOrdered1(new int[]{1,3,4,6,8,11,19,20}));
         System.out.println(isArrayOrdered1(new int[]{22,18,14,8,4}));
         System.out.println(isArrayOrdered1(new int[]{10,2,3,11}));
@@ -22,6 +34,13 @@ public class WalmartCoding {
         System.out.println(isArrayOrdered1(new int[]{1}));
     }
 
+    private static void callMethod(int x) {
+        x = 10;
+    }
+
+    private static void callMethod(Employee e) {
+        e = new Employee("abc", 2);
+    }
     private static boolean isArrayOrdered(int [] arr){
         boolean isIncreasing=false;
         boolean isDecreasing=false;

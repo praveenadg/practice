@@ -1,5 +1,7 @@
 package problems.Arrays;
 //inplace o(nlogn)
+//space The recursive stack will take O(logn) space and we used an additional array temporaryArray of size n.
+//Thus, overall we use O(logn+n)=O(n) space.
 public class MergeSort {
     public static void main(String[] args) {
         int[] actual = { 5, 1, 6, 2, 3, 4 };
@@ -27,8 +29,9 @@ public class MergeSort {
         for (int i = 0; i < mid; i++) {
             left[i] = arr[i];
         }
+        int index = 0;
         for(int i = mid; i < arr.length; i++){
-            right[i-mid] = arr[i];
+            right[index++] = arr[i];
         }
         mergeSort(left, mid);
         mergeSort(right, n-mid);

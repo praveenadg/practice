@@ -13,6 +13,7 @@ public class Fibonacci {
         System.out.println(iter(12));
     }
 
+    // time o(2pown)
     private static int rec(int n){
         if (n <= 1) {
             return n;
