@@ -1,6 +1,8 @@
 package companies;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /*
@@ -144,6 +146,56 @@ class Solution {
         } catch(InterruptedException ir){
 
         }
+        int a = 2;
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        User employee = new User("name", 1);
+        test(a, list, employee);
+        System.out.println(a);
+        System.out.println(list);
+        System.out.println(employee.getName());
+    }
+
+    public static class User {
+        public User(String name, int id) {
+            this.name = name;
+            this.id = id;
+        }
+
+        @Override
+        public String toString() {
+            return "User{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    '}';
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        String name;
+        int id;
+    }
+
+    static void test(int a, List<Integer> list, User employee) {
+        a = a + 2;
+        list.add(4);
+        list = List.of(2);
+        employee.setName("v");
+        employee = new User("sds", 2);
     }
 }
 

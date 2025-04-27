@@ -5,7 +5,9 @@ import java.util.Arrays;
 public class TwoSum {
 
     public static void main(String[] args) {
-        int[] result = twoSum(new int[]{3,2,4}, 6);
+        int target = 6;
+        int[] result = twoSum(new int[]{3, 2, 4}, target);
+        System.out.println(target);
         for(int num : result){
             System.out.println(num);
         }

@@ -31,9 +31,9 @@ public class Test {
     static class Child extends Parent {
 
 
-        void print(String a) {
-            System.out.println("child-String=" + a);
-        }
+//        void print(String a) {
+//            System.out.println("child-String=" + a);
+//        }
     }
 
     class ApiResponse {

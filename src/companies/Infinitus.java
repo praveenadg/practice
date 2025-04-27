@@ -20,6 +20,8 @@ Note that the path through cities [New York, Chicago, Denver, Los Angeles] is ch
 
 //import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.*;
+
 public class Infinitus {
     public static void main(String[] args) {
 
@@ -31,6 +33,53 @@ public class Infinitus {
     }
 
     static int getMinimumTravelCost(String[][] flights, String source, String destination, int k) {
+        Map<String, List<String[]>> map = new HashMap<>();
+        Map<String, Integer> stops = new HashMap<>();
+
+        for (String[] flight : flights) {
+            String s = flight[0];
+            String d = flight[1];
+            String dist = flight[2];
+
+            if (!map.containsKey(s)) {
+                map.put(s, new ArrayList<>());
+            }
+            map.get(s).add(new String[]{d, dist});
+            stops.put(s, Integer.MAX_VALUE);
+        }
+
+        PriorityQueue<String[]> pq = new PriorityQueue<>((a, b) -> Integer.valueOf(a[2]) - Integer.valueOf(b[2]));
+        pq.add(new String[]{source, "0", "0"});//source, stop, cost
+
+        // int cost = 0;
+
+        while (!pq.isEmpty()) {
+            String[] arr = pq.poll();
+            String sr = arr[0];
+            int stop = Integer.parseInt(arr[1]);
+            int costs = Integer.parseInt(arr[2]);
+
+            if (stop > k + 1 || stop > stops.getOrDefault(sr, Integer.MAX_VALUE)) {
+                continue;
+            }
+            stops.put(sr, stop);
+            if (sr.equals(destination)) {
+                return costs;
+            }
+            for (String[] next : map.getOrDefault(sr, new ArrayList<>())) {
+                String nei = next[0];
+                //  if (!visited.contains(nei)) {
+                int neicosts = Integer.parseInt(next[1]);
+                pq.add(new String[]{nei, String.valueOf(stop + 1), String.valueOf(neicosts + costs)});
+                //  }
+            }
+        }
+
+        return -1;
+    }
+
+    //interview
+    static int getMinimumTravelCost1(String[][] flights, String source, String destination, int k) {
         int cost = 0;
         return cost;
 

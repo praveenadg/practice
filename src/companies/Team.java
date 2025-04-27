@@ -1,6 +1,5 @@
 package companies;
-import java.io.*;
-import java.time.Duration;
+
 import java.util.*;
 
 public class Team {
@@ -73,9 +72,59 @@ Complexity Variable:
 n = number of songs in the input
 */
 
+    //working
+    public static List<String> chaining(List<String> songs, String startSong) {
+        Map<String, List<String>> firstWordMap = new HashMap<>();
+        Map<String, String[]> songWordsMap = new HashMap<>();
+
+        // Preprocess: map first words and split songs into words
+        for (String song : songs) {
+            String[] words = song.split("\\s+");
+            songWordsMap.put(song, words);
+            String first = words[0].toLowerCase();
+            firstWordMap.computeIfAbsent(first, k -> new ArrayList<>()).add(song);
+        }
+
+        List<String> result = new ArrayList<>();
+        Set<String> visited = new HashSet<>();
+
+        dfs(startSong, songs, firstWordMap, songWordsMap, visited, new ArrayList<>(), result);
+
+        return result;
+    }
+
+    private static void dfs(String currentSong, List<String> songs,
+                            Map<String, List<String>> firstWordMap,
+                            Map<String, String[]> songWordsMap,
+                            Set<String> visited,
+                            List<String> path,
+                            List<String> result) {
+        visited.add(currentSong);
+        path.add(currentSong);
+
+        // Update result if this path is longer
+        if (path.size() > result.size()) {
+            result.clear();
+            result.addAll(new ArrayList<>(path));
+        }
+
+        String[] words = songWordsMap.get(currentSong);
+        String lastWord = words[words.length - 1].toLowerCase();
+
+        List<String> nextSongs = firstWordMap.getOrDefault(lastWord, Collections.emptyList());
+        for (String nextSong : nextSongs) {
+            if (!visited.contains(nextSong)) {
+                dfs(nextSong, songs, firstWordMap, songWordsMap, visited, path, result);
+            }
+        }
+
+        // Backtrack
+        path.remove(path.size() - 1);
+        visited.remove(currentSong);
+    }
 
 
-
+    //interview
         private static String[] formTheLongestChain(String firstSong, String[] songs) {
             Map<String, List<String>> startMap = new HashMap<>();
           //  Map<String, List<String>> endMap = new HashMap<>();

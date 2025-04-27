@@ -22,6 +22,7 @@ public class BinaryGap {
     public static void main(String args[]) {
 
         System.out.println(  binaryGap(Integer.toBinaryString(32)));
+        System.out.println(binaryGap(5));
         Math.pow(2,3);
         int n=9;String s="";
         while(n>0){
@@ -30,6 +31,22 @@ public class BinaryGap {
         }
         System.out.println(s);
 
+    }
+
+    private static int binaryGap(int binary) {
+
+        int last = -1;
+        int res = 0;
+
+        for (int i = 0; i < 32; i++) {
+            if ((binary >> i & 1) == 1) {
+                if (last > -1) {
+                    res = Math.max(res, i - last);
+                }
+                last = i;
+            }
+        }
+        return res;
     }
 
     private static int binaryGap(String binary){//1001

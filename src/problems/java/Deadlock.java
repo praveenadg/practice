@@ -17,7 +17,7 @@ public class Deadlock {
                     System.out.println("resource1 locked by" + Thread.currentThread().getName());
                 }
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                 }
 

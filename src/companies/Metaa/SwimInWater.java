@@ -1,6 +1,5 @@
 package companies.Metaa;
 
-import java.util.Arrays;
 import java.util.PriorityQueue;
 
 /**
@@ -59,8 +58,8 @@ public class SwimInWater {
         int n=grid.length;
         boolean[][] visited=new boolean[n][n];
 
-        for(boolean[] i:visited)
-            Arrays.fill(i,false);
+//        for(boolean[] i:visited)
+//            Arrays.fill(i,false);
 
         pq.add(new int[]{0,0,grid[0][0]});
 

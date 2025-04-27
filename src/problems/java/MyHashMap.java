@@ -6,57 +6,54 @@ import java.util.List;
 
 class MyHashMap {
 
-    static class Pair<U,V>{
-        public U first;
-        public V second;
-        public Pair(U first, V second){
-            this.first=first;
-            this.second=second;
+    static class Node<U, V> {
+        public U key;
+        public V val;
+
+        public Node(U key, V val) {
+            this.key = key;
+            this.val = val;
         }
     }
     static class Bucket{
-        private List<Pair<Integer, Integer>> pairList;
+        private List<Node<Integer, Integer>> nodes;
         public Bucket(){
-            this.pairList = new LinkedList<>();
+            this.nodes = new LinkedList<>();
         }
 
         public Integer get(Integer key) {
-            for (Pair<Integer, Integer> pair : this.pairList) {
-                if (pair.first.equals(key))
-                    return pair.second;
+            for (Node<Integer, Integer> pair : this.nodes) {
+                if (pair.key.equals(key))
+                    return pair.val;
             }
             return -1;
         }
 
         public void update(Integer key, Integer value) {
-            boolean found = false;
-            for (Pair<Integer, Integer> pair : this.pairList) {
-                if (pair.first.equals(key)) {
-                    pair.second = value;
-                    found = true;
+            for (Node<Integer, Integer> pair : this.nodes) {
+                if (pair.key.equals(key)) {
+                    pair.val = value;
+                    return;
                 }
             }
-            if (!found)
-                this.pairList.add(new Pair<Integer, Integer>(key, value));
+            this.nodes.add(new Node<Integer, Integer>(key, value));
         }
 
         public void remove(Integer key) {
-            for (Pair<Integer, Integer> pair : this.pairList) {
-                if (pair.first.equals(key)) {
-                    this.pairList.remove(pair);
-                    break;
+            for (Node<Integer, Integer> pair : this.nodes) {
+                if (pair.key.equals(key)) {
+                    this.nodes.remove(pair);
+                    break;//won't throw CME
                 }
             }
         }
     }
 
     List<Bucket> buckets;
-    int capacity;
 
     private final int key_space;
     public MyHashMap() {
         this.key_space=2069;
-        capacity=16;
         buckets = new ArrayList<>();
         for (int i = 0; i < this.key_space; ++i) {
             this.buckets.add(new Bucket());
@@ -66,10 +63,6 @@ class MyHashMap {
     public void put(int key, int value) {
         int hash_key = key % key_space;
         this.buckets.get(hash_key).update(key, value);
-    }
-
-    private int hash(Integer key) {
-        return key.hashCode() % capacity;
     }
 
     public int get(int key) {

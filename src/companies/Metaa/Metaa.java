@@ -35,7 +35,7 @@ Output: 4
 
     //time o(n) space o(1)
     private int minimumPar(String s){
-        if(s==null && s.length()==0)
+        if (s == null || s.isEmpty())
             return 0;
         int openCount=0;
         int invalidCount=0;

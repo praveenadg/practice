@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class WalmartCoding {
 
-    record Employee(String name, int id) {
+    public record Employee(String name, int id) {
     }
     public static void main(String args[]){
         System.out.println(null == "text");
